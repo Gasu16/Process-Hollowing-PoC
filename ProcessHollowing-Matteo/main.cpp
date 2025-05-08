@@ -3,9 +3,7 @@
 #include <string.h>
 #include <windows.h>
 #include <tchar.h>
-// No need for wdmguid.h typically
 #include <winternl.h> // Needed for PEB, PROCESS_BASIC_INFORMATION, NtQueryInformationProcess
-// winerror.h is included by windows.h
 #include <iostream>
 
 #pragma comment(lib,"ntdll.lib") // Link against ntdll.lib for Nt* functions
@@ -36,10 +34,11 @@ int main(void) {
     PROCESS_INFORMATION pi;
     PROCESS_BASIC_INFORMATION bi = {}; // Use {} for zero-initialization
     CONTEXT Ctx = {}; // Initialize Ctx
+    
 
     // Define target and payload paths (replace with your actual paths)
-    wchar_t processTarget[] = L"C:\\Users\\rmgrammatico\\Downloads\\GameHacking\\Basic-Tests\\ProcessHollowing\\target.exe"; // Example: Use a common 64-bit target
-    wchar_t processPayload[] = L"C:\\Users\\rmgrammatico\\Downloads\\GameHacking\\Basic-Tests\\ProcessHollowing\\payload.exe";  // IMPORTANT: Replace with your 64-bit payload path
+    wchar_t processTarget[] = L"C:\\Path\\To\\target.exe"; // Example: Use a common 64-bit target
+    wchar_t processPayload[] = L"C:\\Path\\To\\payload.exe";  // IMPORTANT: Replace with your 64-bit payload path
 
     // Initialize STARTUPINFO and PROCESS_INFORMATION
     SecureZeroMemory(&si, sizeof(si));
